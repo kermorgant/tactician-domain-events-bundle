@@ -15,7 +15,7 @@ class PopulateDebugCommandPass implements CompilerPassInterface
         }
 
         $command = $container->getDefinition('tactician_domain_events.command.debug');
-        $subscribers = $container->findTaggedServiceIds('tactician.event_subscriber');
+        // $subscribers = $container->findTaggedServiceIds('tactician.event_subscriber');
         $listeners = $container->findTaggedServiceIds('tactician.event_listener');
 
         $events = [];
@@ -29,17 +29,17 @@ class PopulateDebugCommandPass implements CompilerPassInterface
             }
         }
 
-        foreach ($subscribers as $serviceId => $tags) {
-            $subscriber = $container->get($serviceId);
+        // foreach ($subscribers as $serviceId => $tags) {
+        //     $subscriber = $container->get($serviceId);
 
-            if (!$subscriber instanceof EventSubscriberInterface) {
-                continue;
-            }
+        //     if (!$subscriber instanceof EventSubscriberInterface) {
+        //         continue;
+        //     }
 
-            foreach ($subscriber->getSubscribedEvents() as $event => $method) {
-                $events[$event][] = get_class($subscriber) . '::' . $method[1];
-            }
-        }
+        //     foreach ($subscriber->getSubscribedEvents() as $event => $method) {
+        //         $events[$event][] = get_class($subscriber) . '::' . $method[1];
+        //     }
+        // }
 
         ksort($events);
         $command->setArgument(0, $events);
