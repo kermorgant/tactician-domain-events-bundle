@@ -8,9 +8,9 @@ services:
         arguments: ['@tactician_domain_events.doctrine.event_collector', '@tactician_domain_events.dispatcher']
         lazy: true
 
-    tactician_domain_events.command.debug:
-        class: BornFree\TacticianDomainEventBundle\Command\DebugCommand
-        arguments:
-            - '@service_container'
-        tags:
-            - { name: console.command }
+    # tactician_domain_events.command.debug:
+    #     class: BornFree\TacticianDomainEventBundle\Command\DebugCommand
+    #     arguments:
+    #         - '@service_container'
+    #     tags:
+    #         - { name: console.command }
